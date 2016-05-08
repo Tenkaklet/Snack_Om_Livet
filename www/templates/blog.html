@@ -1,0 +1,19 @@
+<ion-view view-title="Snack Om Livet">
+  <ion-content class="">
+    <!-- <ion-list>
+      <ion-item ng-repeat="playlist in playlists" href="#/menu/posts/{{playlist.id}}">
+        {{playlist.title}}
+      </ion-item>
+    </ion-list> -->
+
+      <ul class="" id="postFeed">
+          <li ng-repeat="post in posts">
+              <a ng-href="#/menu/posts/{{post.id}}">
+                  <img ng-src="{{post.trail[0].blog.theme.header_image_scaled}}" alt="">
+              </a>
+          </li>
+      </ul>
+
+    <h6>{{name}}</h6>
+  </ion-content>
+</ion-view>

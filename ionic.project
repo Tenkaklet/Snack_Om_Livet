@@ -1,0 +1,12 @@
+{
+  "name": "SnackOmLivet",
+  "app_id": "1bc68c80",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}
