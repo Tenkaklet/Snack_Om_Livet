@@ -1,8 +1,16 @@
 <ion-view view-title="Post">
   <ion-content id="Post">
-    <h1>{{Id}}</h1>
+      <header id="PostHeader">
+          <div class="avatar">
+              <img class="avatar-image" ng-src="{{avatarImage}}">
+              <div class="avatar-meta">
+                  <p>{{authorName}}</p>
+                  <p>13 minutes ago</p>
+              </div>
+          </div>
+      </header>
 
-    <div class="col" ng-bind-html="post.body">
+    <div class="col" ng-bind-html="post.content">
 
     </div>
   </ion-content>

@@ -3,11 +3,11 @@ angular.module('SoLApp.services', [])
   var loginRef = new Firebase('https://snackomlivet.firebaseio.com');
   return $firebaseAuth(loginRef);
 }])
-.factory('Tumblr', ['$http', function ($http) {
-  var apiKey = 'xewG5GENHtuFF00MoMkrO1SG8VKqZhFEFcoKXwMBcLcUQJmp1M';
+.factory('Wordpress', ['$http', function ($http) {
+
   var getPost = function (post) {
-    var TumblrURL = 'http://api.tumblr.com/v2/blog/snackomlivet.tumblr.com/posts/text?api_key=' + apiKey;
-    return $http.get(TumblrURL)
+    var BlogUrl = 'http://www.tenkaklet.com/blog/tag/snack-om/?json=1';
+    return $http.get(BlogUrl)
     .then(function (response) {
       return response.data;
     });
@@ -19,12 +19,11 @@ angular.module('SoLApp.services', [])
   };
 }])
 .factory('Post', ['$http', function ($http) {
-  var apiKey = 'xewG5GENHtuFF00MoMkrO1SG8VKqZhFEFcoKXwMBcLcUQJmp1M';
   var specPost = function (thePost) {
-    var postUrl = 'http://api.tumblr.com/v2/blog/snackomlivet.tumblr.com/posts/text?id=' + thePost + '&api_key=' + apiKey;
+    var postUrl = 'http://www.tenkaklet.com/blog/?json=get_post&post_id=' + thePost;
     return $http.get(postUrl)
     .then(function (postData) {
-      return postData.data.response.posts;
+      return postData.data.post;
     });
   };
   return {
@@ -32,4 +31,8 @@ angular.module('SoLApp.services', [])
       return specPost(thePost);
     }
   };
+}])
+.factory('User', ['$firebaseAuth', function ($firebaseAuth) {
+  var userRef = new Firebase('https://snackomlivet.firebaseio.com/users');
+  return userRef;
 }]);

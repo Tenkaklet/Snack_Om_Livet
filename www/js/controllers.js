@@ -82,7 +82,7 @@ console.log(login);
 
 }])
 
-.controller('BlogFeedCtrl',[ '$scope', 'login', 'Tumblr',function($scope, login, Tumblr) {
+.controller('BlogFeedCtrl',[ '$scope', 'login', 'Wordpress',function($scope, login, Wordpress) {
   $scope.posts = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
@@ -91,12 +91,11 @@ console.log(login);
     { title: 'Rap', id: 5 },
     { title: 'Cowbell', id: 6 }
   ];
-  Tumblr.findPost()
+  Wordpress.findPost()
   .then(function(res) {
     console.log(res);
-    $scope.posts = res.response.posts;
+    $scope.posts = res.posts;
     console.log($scope.posts);
-    $scope.name = res.response.blog.name;
   });
 
 
@@ -107,7 +106,21 @@ console.log(login);
   Post.findPost($stateParams.postId)
   .then(function(res) {
     console.log(res);
-    $scope.post = res[0];
-    console.log($scope.post);
+    var postHeader = document.getElementById('PostHeader');
+    var headerImage = res.thumbnail_images.full.url;
+    var image = 'url(' + headerImage + ')';
+    postHeader.style.backgroundImage = image;
+    $scope.post = res;
+    var firstName = res.author.first_name;
+    var secondName = res.author.last_name;
+    $scope.authorName = firstName + ' ' + secondName;
+
+    if ($scope.authorName === 'Max Carlquist') {
+      $scope.avatarImage = 'http://www.tenkaklet.com/snack/images/max.jpg';
+    } else if ($scope.authorName === 'Daniel Arthursson') {
+      $scope.avatarImage = 'http://www.tenkaklet.com/snack/images/dan2.jpg';
+    } else {
+
+    }
   });
 }]);
