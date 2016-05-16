@@ -17,14 +17,16 @@ $dark:                            #444 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
-
+@import url(https://fonts.googleapis.com/css?family=Amaranth|Titillium+Web|Fjalla+One);
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
 .pane {
 
 }
-
+p {
+  font-family: 'Titillium Web', sans-serif;
+}
 #postFeed {
   margin-left: 5px;
   padding: 7px;
@@ -55,6 +57,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
       background-position: center;
       height: 267px;
       width: 100%;
+      box-shadow: 2px 2px 2px #000;
+      margin-bottom: 13px;
     }
   }
   .avatar {
@@ -71,12 +75,19 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     .avatar-meta {
       display: inline-block;
       vertical-align: middle;
-
       p {
-        text-shadow: 0 2px 2px black;
+        text-shadow: 0 2px 2px #333;
         line-height: 0.7;
         color: #FFF;
         font-size: 18px;
+        font-family: 'Fjalla One', sans-serif;
       }
+    }
+  }
+  #PostContent {
+    padding: 0 15.5px;
+    .title {
+      text-align: center;
+      font-family: 'Amaranth', sans-serif;
     }
   }

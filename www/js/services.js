@@ -6,7 +6,7 @@ angular.module('SoLApp.services', [])
 .factory('Wordpress', ['$http', function ($http) {
 
   var getPost = function (post) {
-    var BlogUrl = 'http://www.tenkaklet.com/blog/tag/snack-om/?json=1';
+    var BlogUrl = 'http://www.tenkaklet.com/blog/tag/snack-om-livet/?json=1';
     return $http.get(BlogUrl)
     .then(function (response) {
       return response.data;

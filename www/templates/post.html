@@ -9,8 +9,10 @@
               </div>
           </div>
       </header>
-
-    <div class="col" ng-bind-html="post.content">
+      <section id="PostContent">
+          <h3 class="title">{{post.title}}</h3>
+        <div class="col" ng-bind-html="post.content">
+      </section>
 
     </div>
   </ion-content>

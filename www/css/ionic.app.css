@@ -15,6 +15,7 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+@import url(https://fonts.googleapis.com/css?family=Amaranth|Titillium+Web|Fjalla+One);
 /*!
   Ionicons, v2.0.1
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
@@ -9789,6 +9790,9 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+p {
+  font-family: 'Titillium Web', sans-serif; }
+
 #postFeed {
   margin-left: 5px;
   padding: 7px; }
@@ -9812,7 +9816,9 @@ a.button {
     background-size: cover;
     background-position: center;
     height: 267px;
-    width: 100%; }
+    width: 100%;
+    box-shadow: 2px 2px 2px #000;
+    margin-bottom: 13px; }
 
 .avatar {
   position: fixed;
@@ -9828,7 +9834,14 @@ a.button {
     display: inline-block;
     vertical-align: middle; }
     .avatar .avatar-meta p {
-      text-shadow: 0 2px 2px black;
+      text-shadow: 0 2px 2px #333;
       line-height: 0.7;
       color: #FFF;
-      font-size: 18px; }
+      font-size: 18px;
+      font-family: 'Fjalla One', sans-serif; }
+
+#PostContent {
+  padding: 0 15.5px; }
+  #PostContent .title {
+    text-align: center;
+    font-family: 'Amaranth', sans-serif; }
