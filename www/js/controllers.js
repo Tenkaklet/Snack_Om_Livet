@@ -97,6 +97,17 @@ console.log(login);
     $scope.posts = res.posts;
     console.log($scope.posts);
   });
+  $scope.refresh = function () {
+    Wordpress.findPost()
+    .then(function (res) {
+      console.log('doing refresh');
+      $scope.posts = res.posts;
+      console.log('done');
+    })
+    .finally(function () {
+      $scope.$broadcast('scroll.refreshComplete');
+    });
+  };
 
 
 }])
