@@ -71,11 +71,17 @@ angular.module('SoLApp.controllers', [])
 
 }])
 
-.controller('BlogFeedCtrl',[ '$scope', 'login', 'Wordpress',function($scope, login, Wordpress) {
+.controller('BlogFeedCtrl',[ '$scope', 'login', 'Wordpress', '$ionicLoading', function($scope, login, Wordpress, $ionicLoading) {
+
+  $ionicLoading.show({
+    template: 'Loading',
+    animation: 'fade-in'
+  });
 
   Wordpress.findPost()
   .then(function(res) {
     $scope.posts = res.posts;
+    $ionicLoading.hide();
   });
 
   $scope.refresh = function () {
@@ -91,10 +97,18 @@ angular.module('SoLApp.controllers', [])
 
 }])
 
-.controller('BlogPostCtrl', ['$scope', '$stateParams', 'Post', function($scope, $stateParams, Post) {
+.controller('BlogPostCtrl', ['$scope', '$stateParams', 'Post', '$ionicLoading', function($scope, $stateParams, Post, $ionicLoading) {
+
+  $ionicLoading.show({
+    template: 'Loading',
+    animation: 'fade-in',
+    duration: 3000
+  });
+
   $scope.Id = $stateParams.postId;
   Post.findPost($stateParams.postId)
   .then(function(res) {
+    $ionicLoading.hide();
     var postHeader = document.getElementById('PostHeader');
     var headerImage = res.thumbnail_images.full.url;
     var image = 'url(' + headerImage + ')';
