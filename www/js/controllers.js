@@ -2,14 +2,6 @@ angular.module('SoLApp.controllers', [])
 
 .controller('MenuCtrl', ['$scope', '$ionicModal', '$timeout', 'login', function($scope, $ionicModal, $timeout, login) {
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  // Form data for the login modal
   $scope.loginData = {};
 
   // Create the login modal that we will use later
@@ -28,7 +20,7 @@ angular.module('SoLApp.controllers', [])
   $scope.login = function() {
     $scope.modal.show();
   };
-console.log(login);
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     login.$authWithPassword({
@@ -36,12 +28,12 @@ console.log(login);
       "password": $scope.loginData.password
     })
     .then(function (authData) {
-      console.log(authData);
+
       $scope.loginData = '';
       $scope.closeLogin();
     })
     .catch(function(error) {
-      console.log(error);
+
       $scope.errorMessages = 'The wrong password or e-mail has been used';
     });
 
@@ -66,15 +58,12 @@ console.log(login);
 
   $scope.logout = function () {
     login.$unauth();
-    console.log('logged out!');
   };
   login.$onAuth(function (res) {
     if (res) {
-      console.log('user logged in with: ' , res.uid);
       $scope.loggedIn = true;
       $scope.needLogin = false;
     } else {
-      console.log('not logged in');
       $scope.needLogin = true;
       $scope.loggedIn = false;
     }
@@ -83,26 +72,16 @@ console.log(login);
 }])
 
 .controller('BlogFeedCtrl',[ '$scope', 'login', 'Wordpress',function($scope, login, Wordpress) {
-  $scope.posts = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+
   Wordpress.findPost()
   .then(function(res) {
-    console.log(res);
     $scope.posts = res.posts;
-    console.log($scope.posts);
   });
+
   $scope.refresh = function () {
     Wordpress.findPost()
     .then(function (res) {
-      console.log('doing refresh');
       $scope.posts = res.posts;
-      console.log('done');
     })
     .finally(function () {
       $scope.$broadcast('scroll.refreshComplete');
@@ -116,7 +95,6 @@ console.log(login);
   $scope.Id = $stateParams.postId;
   Post.findPost($stateParams.postId)
   .then(function(res) {
-    console.log(res);
     var postHeader = document.getElementById('PostHeader');
     var headerImage = res.thumbnail_images.full.url;
     var image = 'url(' + headerImage + ')';
